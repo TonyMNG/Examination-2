@@ -14,11 +14,12 @@ def menu_choice(choice):
     else:
         print("Invalid choice")
         return True
-    
+
 
 def main():
     keep_going = True
-    print("Welcome to our Guess Game!")
+
+    print("\n   * Welcome to our Guess Game - Capital Cities Edition! *")
 
     while keep_going:
 
