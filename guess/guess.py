@@ -3,7 +3,11 @@ import string
 
 
 class Guess:
-    def guess_game(choice):
+
+    def __init__(self):
+        pass
+ 
+    def guess_game(self, choice):
         words = ['London', 'Ankara', 'Abuja', 'Stockholm', 'Oslo',
                  'Copenhagen', 'Paris', 'Berlin', 'Rome', 'Madrid', 'Athens',
                  'Vienna', 'Brussels', 'Amsterdam']
@@ -148,7 +152,7 @@ class Guess:
                     
                     guessed_letters += computer_guess
                     if computer_guess in guessed_letters:
-                        computer_guess = random.choice(string.ascii_lower())
+                        computer_guess = random.choice(string.ascii_lowercase)
                     elif computer_guess in random_word:
                         print("Computer guessed correctly.")
                         player_turn = False
