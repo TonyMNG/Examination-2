@@ -88,7 +88,7 @@ class guess:
 
                     if user_guess in random_word:
                         print("You guessed correctly.")
-                        user_turn = True
+                        user_turn = False
                     else:
                         print("You guessed wrong")
                         turns -= 1
@@ -102,10 +102,15 @@ class guess:
                     guessed_letters += computer_guess
                     if computer_guess in guessed_letters:
                         computer_guess = random.choice(string.ascii_lower())
+                    elif computer_guess in random_word:
+                        print("Computer guessed correctly.")
+                        user_turn = False
                     else:
                         computer_turns -= 1
+                        print(f"Computer has {computer_turns} left.")
+                        user_turn = True
 
-                user_turn = not user_turn
+                    print(f"Computer guessed: {computer_guess}")
 
                 # End of game
                 if turns == 0:
