@@ -3,7 +3,9 @@ import string
 
 class guess:
     def guess_game(choice):
-
+        words = ['London', 'Ankara', 'Abuja', 'Stockholm', 'Oslo', 'Copenhagen', 
+                      'Paris', 'Berlin', 'Rome', 'Madrid', 'Athens', 'Vienna', 'Brussels',
+                      'Amsterdam']
         turns = 8
         wrong_guess = 0
         player_name = input("Enter your name: ")
@@ -27,7 +29,7 @@ class guess:
                     guessed_letters.add(user_guess)
                 else:
                     wrong_guess += 1
-                    
+
 
                 for char in random_word: 
                     if char in user_guess:
@@ -54,7 +56,8 @@ class guess:
 
         elif choice == 2:
             # 2 players
-
+            player1_name = input("Enter Player 1 name: ")
+            player2_name = input("Enter Player 2 name: ")
 
 
         elif choice == 3:
