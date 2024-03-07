@@ -37,14 +37,14 @@ class Guess:
                 for char in random_word: 
                     if char in user_guess:
                         print(char, end=" ")
-                        guessed_letters += char
+                        guessed_letters.add(char)
 
                     else:
                         print("_", end=" ")
                         turns -= 1
                         wrong_guess += 1
 
-                print("Guessed characters: ", guessed_letters)
+                print("\nGuessed characters: ", guessed_letters)
 
                 if wrong_guess == 0:
                     print(f"Congratulations {player_name}, you won!")
