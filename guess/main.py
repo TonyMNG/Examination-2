@@ -1,5 +1,9 @@
+from guess import Guess
+
 
 def menu_choice(choice):
+    gameboard = Guess()
+
     if choice == 1:
         print("""
             ___________________________
@@ -7,20 +11,20 @@ def menu_choice(choice):
             |                         |
             |    1. Solo              |
             |    2. PvP               |
-            |    2. Against Computer  |
+            |    3. Against Computer  |
             |                         |
             |    5. Return            |
             ___________________________
         """)
         play_choice = int(input("Choose your option: "))
         if play_choice == 1:
-            pass
+            gameboard.guess_game(1)
         elif play_choice == 2:
             print("Always nice to play with a friend.")
-            pass
+            gameboard.guess_game(2)
         elif play_choice == 3:
             print("May the best player win!")
-            pass
+            gameboard.guess_game(3)
         elif play_choice == 5:
             return None
         else:
@@ -38,7 +42,6 @@ def menu_choice(choice):
 
 
 def main():
-    # gameboard = 
     keep_going = True
 
     print("\n   * Welcome to our Guess Game - Capital Cities Edition! *")
