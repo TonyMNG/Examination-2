@@ -2,7 +2,7 @@ import random
 import string
 
 
-class guess:
+class Guess:
     def guess_game(choice):
         words = ['London', 'Ankara', 'Abuja', 'Stockholm', 'Oslo',
                  'Copenhagen', 'Paris', 'Berlin', 'Rome', 'Madrid', 'Athens',
@@ -12,10 +12,10 @@ class guess:
         wrong_guess = 0
         player_name = input("Enter your name: ")
         guessed_letters = set()
+        random_word = random.choice(words)
 
         if choice == 1:
             # Solo
-            random_word = random.choice(words)
             while turns > 0:
                 user_guess = input("Guess a letter: ")
 
@@ -54,19 +54,66 @@ class guess:
         elif choice == 2:
             # 2 players
             # player1_name = input("Enter Player 1 name: ")
+            players_turn = True
+            player2_turns = 8
             player2_name = input("Enter Player 2 name: ")
+
+            while turns > 0 or player2_turns > 0:
+                print(f"{player_name} starts first.")
+                
+                for char in random_word:
+                    if char in guessed_letters:
+                        print(char, end=" ")                        
+                    else:
+                        print("_", end=" ")
+                        guessed_letters += char
+                # player 1
+                if players_turn:
+                    print(f"{player_name}s turn.")
+                    user_guess = input("Guess a letter: ")
+
+                    if all(char in random_word for char in user_guess):
+                        print("Fast win!!!!")
+                        break
+
+                    guessed_letters += user_guess
+
+                    if user_guess in random_word:
+                        print(f"{player_name} guessed correctly.")
+                        player_turn = False
+                    else:
+                        print(f"{player_name} guessed wrong")
+                        turns -= 1
+                        print(f"{player_name} has {turns} left.")
+
+                else:
+                    print(f"{player2_name}s turn.")
+                    player2_guess = input("Guess a letter: ")
+
+                    if all(char in random_word for char in player2_guess):
+                        print("Fast win!!!!")
+                        break
+
+                    guessed_letters += player2_guess
+
+                    if player2_guess in random_word:
+                        print("You guessed correctly.")
+                        player_turn = False
+                    else:
+                        print("You guessed wrong")
+                        player2_turns -= 1
+                        print(f"You have {player2_turns} left.")
 
         elif choice == 3:
             # Playing against pc
             computer_turns = 8
-            user_turn = True
+            player_turn = True
             random_word = random.choice(words)
             
             while turns > 0 or computer_turns > 0:
                 print(f"{player_name} starts first.")
 
-                for char in random_word: 
-
+                for char in random_word:
                     if char in guessed_letters:
                         print(char, end=" ")                        
                     else:
@@ -76,7 +123,7 @@ class guess:
                         guessed_letters += char
 
                 # User
-                if user_turn:
+                if player_turn:
                     print(f"{player_name}s turn.")
                     user_guess = input("Guess a letter: ")
 
@@ -88,7 +135,7 @@ class guess:
 
                     if user_guess in random_word:
                         print("You guessed correctly.")
-                        user_turn = False
+                        player_turn = False
                     else:
                         print("You guessed wrong")
                         turns -= 1
@@ -104,11 +151,11 @@ class guess:
                         computer_guess = random.choice(string.ascii_lower())
                     elif computer_guess in random_word:
                         print("Computer guessed correctly.")
-                        user_turn = False
+                        player_turn = False
                     else:
                         computer_turns -= 1
                         print(f"Computer has {computer_turns} left.")
-                        user_turn = True
+                        player_turn = True
 
                     print(f"Computer guessed: {computer_guess}")
 
