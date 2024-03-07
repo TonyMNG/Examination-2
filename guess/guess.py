@@ -18,10 +18,16 @@ class guess:
                 user_guess = input("Guess a letter: ")
 
                 # guess immediatly implementation - not finished
-                # if user_guess == random_word:
-                #     print("Woah! You guessed correctly immediatly!")
-                #     turns -= 1
-                #     break
+                if user_guess == random_word:
+                    print("Woah! You guessed correctly immediatly!")
+                    turns -= 1
+                    break
+
+                if user_guess in random_word:
+                    guessed_letters.add(user_guess)
+                else:
+                    wrong_guess += 1
+                    
 
                 for char in random_word: 
                     if char in user_guess:
