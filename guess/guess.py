@@ -75,25 +75,19 @@ class Guess:
             players_turn = True
             player2_turns = 8
             player2_name = input("Enter Player 2 name: ")
+            print(f"{player_name} starts first.")
 
             while turns > 0 or player2_turns > 0:
-                print(f"{player_name} starts first.")
+                # print(f"{player_name} starts first.")
 
                 guess_word = "".join([char if char.lower() in guessed_letters 
                                       else "_ " for char in random_word])
                 print(guess_word)
-                
-                # for char in random_word:
-                #     if char in guessed_letters:
-                #         print(char, end=" ")                        
-                #     else:
-                #         print("_", end=" ")
-                #         guessed_letters += char
 
                 # player 1
                 if players_turn:
                     print(f"\n{player_name}s turn.")
-                    user_guess = input("Guess a letter: ".lower())
+                    user_guess = input("Guess an alphabet character: ".lower())
 
                     if user_guess in guessed_letters:
                         print("You already guessed this character.")
@@ -102,25 +96,42 @@ class Guess:
                         print("Invalid input. Must enter an alphabetic character.")
                         continue
 
-                    guessed_letters.add(user_guess)
+                    if user_guess == "quit".lower():
+                        print(f"{player_name} chose to quit game.")
+                        break
 
-                    if user_guess in random_word:
-                        print(f"{player_name} guessed correctly.")
+                    if len(user_guess) > 1:
+                        if user_guess.lower() == random_word.lower():
+                            print(f"{player_name} guessed correctly immediatly.")
+                            break
+                        else:
+                            print(f"{player_name} took a risky guess, this will deduct -2 turns.")
+                            turns -= 2
                     else:
-                        print(f"{player_name} guessed wrong")
-                        turns -= 1
-                        print(f"{player_name} has {turns} turns left.")
-                        player_turn = False
+                        if user_guess in random_word.lower():
+                            print(f"{player_name} guessed correctly.")
+                            if user_guess not in guessed_letters:
+                                guessed_letters.add(user_guess)
+                        else:
+                            print(f"{player_name} guessed wrong")
+                            guessed_letters.add(user_guess)
+                            turns -= 1
+                            print(f"{player_name} has {turns} turns left.")
+                            player_turn = False
 
                     if "_" not in guess_word:
                         print(f"Congratulations {player_name}, you won!")
                         print(f"The guess word was: {random_word}")
                         break
 
+                # player 2
                 else:
                     print(f"{player2_name}s turn.")
-                    player2_guess = input("Guess a letter: ".lower())
-
+                    player2_guess = input("Guess an alphabet character: ".lower())
+                    
+                    if player2_guess == "quit".lower():
+                        print(f"{player2_name} chose to quit game.")
+                        break
                     if player2_guess in guessed_letters:
                         print("You already guessed this character.")
                         continue
@@ -128,24 +139,33 @@ class Guess:
                         print("Invalid input. Must enter an alphabetic character.")
                         continue
 
-                    guessed_letters.add(player2_guess)
-
-                    if player2_guess in random_word:
-                        print("You guessed correctly.")
-                        player_turn = False
+                    if len(player2_guess) > 1:
+                        if player2_guess.lower() == random_word.lower():
+                            print(f"{player2_name} guessed correctly immediatly.")
+                            break
+                        else:
+                            print(f"{player2_name} took a risky guess, this will deduct -2 turns.")
+                            player2_turns -= 2
                     else:
-                        print("You guessed wrong")
-                        player2_turns -= 1
-                        print(f"You have {player2_turns} turns left.")
+                        if player2_guess in random_word.lower():
+                            print(f"{player2_name} guessed correctly.")
+                            if player2_guess not in guessed_letters:
+                                guessed_letters.add(player2_guess)
+                        else:
+                            print(f"{player2_name} guessed wrong")
+                            guessed_letters.add(player2_guess)
+                            player2_turns -= 1
+                            print(f"{player2_name} has {player2_turns} turns left.")
+                            player_turn = True
 
                     if "_" not in guess_word:
                         print(f"Congratulations {player2_name}, you won!")
                         print(f"The guess word was: {random_word}")
                         break
 
-                if user_guess.lower() == "quit".lower() or player2_guess.lower() == "quit".lower():
-                    print("Quitting PvP mode.")
-                    break
+                # if user_guess.lower() == "quit".lower() or player2_guess.lower() == "quit".lower():
+                #     print("Quitting PvP mode.")
+                #     break
 
         elif choice == 3:
             # Playing against pc
