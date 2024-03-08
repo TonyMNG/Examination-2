@@ -1,10 +1,11 @@
 import random
 import string
+from scoreboard import Scoreboard
 
 
 class GuessGame:
     def __init__(self):
-        pass
+        self.scoreboard = Scoreboard("scores.txt")
  
     def get_random_word(self):
         words = ['London', 'Ankara', 'Abuja', 'Stockholm', 'Oslo',
@@ -37,6 +38,7 @@ class GuessGame:
             if len(player_guess) > 1:
                 if player_guess.lower() == random_word.lower():
                     print("You guessed correctly immediatly!")
+                    self.scoreboard.add_score(player_name, 1)
                     break
                 else:
                     print("You took a risky guess, this will deduct -2 turns.")
@@ -68,6 +70,7 @@ class GuessGame:
             if "_" not in guess_word:
                 print(f"*** Congratulations {player_name}, you won! ***")
                 print(f"The guess word was: {random_word}")
+                self.scoreboard.add_score(player_name, 1)
                 break
 
     def PvP_mode(self):
@@ -110,6 +113,7 @@ class GuessGame:
                 if len(player1_guess) > 1:
                     if player1_guess.lower() == random_word.lower():
                         print(f"{player1_name} WON by guessing correctly immediatly.")
+                        self.scoreboard.add_score(player1_name, 1)
                         break
                     else:
                         print(f"{player1_name} took a risky guess, this will deduct -2 turns.")
@@ -133,6 +137,7 @@ class GuessGame:
                 if "_" not in guess_word:
                     print(f"*** Congratulations {player1_name}, you won! ***")
                     print(f"The guess word was: {random_word}")
+                    self.scoreboard.add_score(player1_name, 1)
                     break
 
             # player 2
@@ -153,6 +158,7 @@ class GuessGame:
                 if len(player2_guess) > 1:
                     if player2_guess.lower() == random_word.lower():
                         print(f"{player2_name} WON by guessing correctly immediatly.")
+                        self.scoreboard.add_score(player2_name, 1)
                         break
                     else:
                         print(f"{player2_name} took a risky guess, this will deduct -2 turns.")
@@ -175,6 +181,7 @@ class GuessGame:
                 if "_ " not in guess_word:
                     print(f"*** Congratulations {player2_name}, you won! ***")
                     print(f"The guess word was: {random_word}")
+                    self.scoreboard.add_score(player2_name, 1)
                     break
 
     def PvC_mode(self):
@@ -216,6 +223,7 @@ class GuessGame:
                 if len(player_guess) > 1:
                     if player_guess.lower() == random_word.lower():
                         print(f"{player_name} WON by guessing correctly immediatly.")
+                        self.scoreboard.add_score(player_name, 1)
                         break
                     else:
                         print(f"{player_name} took a risky guess, this will deduct -2 turns.")
@@ -239,6 +247,7 @@ class GuessGame:
                 if "_" not in guess_word:
                     print(f"*** Congratulations {player_name}, you won! ***")
                     print(f"The guess word was: {random_word}")
+                    self.scoreboard.add_score(player_name, 1)
                     break
 
             else:
