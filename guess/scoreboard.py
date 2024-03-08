@@ -7,12 +7,13 @@ class Scoreboard:
 
     def add_score(self, name, score):
         with open(self.filename, 'a') as file:
-            file.write(f"{name}: {score}\n")
+            file.write(f"{name.ljust(20)} {score}\n")
 
     def display_scores(self):
         with open(self.filename, 'r') as file:
             scores = file.readlines()
             print("======= Scoreboard =======")
+            print("Player ============ Wins =")
             for line in scores:
                 print(line.strip())
             print("==========================")
