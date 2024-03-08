@@ -54,7 +54,7 @@ class Menu:
                 print("Invalid choice")
         elif choice == 2:
             # Write rules here
-            print("")
+            return choice
         elif choice == 5:
             print("Quitting game...")
             return False

@@ -8,6 +8,7 @@ def main():
     keep_going = True
     guess_game = GuessGame()
     menu = Menu(guess_game)
+    scoreboard = Scoreboard("scores.txt")
 
     print("\n   * Welcome to our Guess Game - Capital Cities Edition! *")
 
@@ -17,6 +18,10 @@ def main():
 
         if choice == 5:
             keep_going = menu.menu_choice(choice)
+        elif choice == 2:
+            Rules.display_rules()
+        elif choice == 3:
+            scoreboard.draw()
         else:
             menu_return = menu.menu_choice(choice)
             if menu_return is None:
