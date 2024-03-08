@@ -14,55 +14,55 @@ class GuessGame:
     
     # Solo
     def solo_mode(self):
-        user_turns = 6
+        player_turns = 6
         player_name = input("Enter your name: ")
         guessed_letters = set()
         random_word = self.get_random_word()
 
-        while user_turns > 0:
-            user_guess = input("\nGuess an alphabet character: ").lower()
+        while player_turns > 0:
+            player_guess = input("\nGuess an alphabet character: ").lower()
 
-            if user_guess.lower() == "quit".lower():
+            if player_guess.lower() == "quit".lower():
                 print("Quitting solo mode.")
                 break
 
-            if user_guess in guessed_letters:
+            if player_guess in guessed_letters:
                 print("You already guessed this character.")
                 continue
 
-            if not user_guess.isascii() or not user_guess.isalpha() or len(user_guess) != 1:
+            if not player_guess.isascii() or not player_guess.isalpha() or len(player_guess) != 1:
                 print("Invalid input. Must enter an alphabetic character.")
                 continue
 
-            if len(user_guess) > 1:
-                if user_guess.lower() == random_word.lower():
+            if len(player_guess) > 1:
+                if player_guess.lower() == random_word.lower():
                     print("You guessed correctly immediatly!")
                     break
                 else:
                     print("You took a risky guess, this will deduct -2 turns.")
-                    user_turns -= 2
+                    player_turns -= 2
             else:
-                if user_guess in random_word.lower():
-                    print(f"\n * '{user_guess}' was found in word. *")
-                    if user_guess not in guessed_letters:
-                        guessed_letters.add(user_guess)
+                if player_guess in random_word.lower():
+                    print(f"\n * '{player_guess}' was found in word. *")
+                    if player_guess not in guessed_letters:
+                        guessed_letters.add(player_guess)
                 else:
-                    print(f"\n * '{user_guess}' was NOT found in word. *")
-                    guessed_letters.add(user_guess)
-                    user_turns -= 1
-                    print(f"You have {user_turns} turns left.")
+                    print(f"\n * '{player_guess}' was NOT found in word. *")
+                    guessed_letters.add(player_guess)
+                    player_turns -= 1
+                    print(f"You have {player_turns} turns left.")
 
-                    if user_turns == 0:
+                    if player_turns == 0:
                         print("You lost!, the word is: " + random_word)
                         print("Better luck next time!")
                         break
                     continue
 
             print("\nGuessed characters:", ", ".join(guessed_letters).upper() if guessed_letters else "None")
-            print(f"You have {user_turns} turns left.")
+            print(f"You have {player_turns} turns left.")
 
             guess_word = "".join([char if char.lower() in guessed_letters 
-                                else "_ " for char in random_word])
+                                 else "_ " for char in random_word])
             print(guess_word)
 
             if "_" not in guess_word:
@@ -188,7 +188,12 @@ class GuessGame:
         guessed_letters = set()
         
         while True:
-            # print(f"{player_name} starts.")
+            # End of game
+            if player_turns == 0 and computer_turns == 0 and "_" in guess_word:
+                print("\nIt's a draw! None of you managed to find the guessing word.")
+                print(f"The guess word was: {random_word}")
+                break
+
             guess_word = "".join([char if char.lower() in guessed_letters 
                                  else "_ " for char in random_word])
             print(guess_word)
@@ -230,7 +235,7 @@ class GuessGame:
                         play_turn = False
 
                 guess_word = "".join([char if char.lower() in guessed_letters 
-                                        else "_ " for char in random_word])
+                                     else "_ " for char in random_word])
                 if "_" not in guess_word:
                     print(f"*** Congratulations {player_name}, you won! ***")
                     print(f"The guess word was: {random_word}")
@@ -260,19 +265,6 @@ class GuessGame:
                 guess_word = "".join([char if char.lower() in guessed_letters 
                                      else "_ " for char in random_word])
                 if "_ " not in guess_word:
-                    print(f"Computer won!")
+                    print("Computer won!")
                     print(f"The guess word was: {random_word}")
                     break
-
-            # End of game
-            # if turns == 0:
-            #     print("Computer won! The word is: " + random_word)
-            #     print("Better luck next time!")
-            #     break
-            # elif computer_turns == 0:
-            #     print("You won over computer! The word is: " + random_word)
-            #     break
-
-
-
-
