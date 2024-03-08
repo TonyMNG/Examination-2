@@ -53,7 +53,8 @@ def main():
             |        * Menu *         |
             |                         |
             |    1. Play game         |
-            |    2. See rules         |
+            |    2. Read rules        |
+            |    3. Scoreboard        |
             |                         |
             |    5. Quit game         |
             ___________________________
