@@ -1,6 +1,8 @@
-from guess import Guess
 
 class Menu:
+    def __init__(self, guess_game):
+        self.guess_game = guess_game
+
     def display_main_menu():
         print("""
             ___________________________
@@ -34,19 +36,18 @@ class Menu:
         return int(input("Choose your option: "))
     
     def menu_choice(self, choice):
-        gameboard = Guess()
 
         if choice == 1:
             Menu.display_play_menu()
             play_choice = Menu.get_play_choice()
             if play_choice == 1:
-                gameboard.guess_game(1)
+                self.guess_game.solo_mode()
             elif play_choice == 2:
                 print("Always nice to play with a friend.")
-                gameboard.guess_game(2)
+                self.guess_game.PvP_mode()
             elif play_choice == 3:
                 print("May the best player win!")
-                gameboard.guess_game(3)
+                self.guess_game.PvC_mode()
             elif play_choice == 5:
                 return None
             else:
