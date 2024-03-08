@@ -1,4 +1,4 @@
-from guess import Guess
+from game import GuessGame
 from scoreboard import Scoreboard
 from rules import Rules
 from menu import Menu
@@ -6,7 +6,8 @@ from menu import Menu
 
 def main():
     keep_going = True
-    menu = Menu()
+    guess_game = GuessGame()
+    menu = Menu(guess_game)
 
     print("\n   * Welcome to our Guess Game - Capital Cities Edition! *")
 
