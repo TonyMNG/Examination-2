@@ -20,17 +20,19 @@ class Guess:
         if choice == 1:
             # Solo
             while turns > 0:
-                user_guess = input("Guess a alphabet character: ").lower()
-
-                if not user_guess.isascii() or not user_guess.isalpha() or len(user_guess) != 1:
-                    print("Invalid input. Must enter a alphabet character.")
-                    continue
+                user_guess = input("\nGuess an alphabet character: ").lower()
 
                 if user_guess.lower() == "quit".lower():
+                    print("Quitting solo mode.")
                     break
-                # if not user_guess.isascii() or len(user_guess) != 1:
-                #     print("Invalid input. Must enter a alphabet character.")
-                #     continue
+
+                if user_guess in guessed_letters:
+                    print("You already guessed this character.")
+                    continue
+
+                if not user_guess.isascii() or not user_guess.isalpha() or len(user_guess) != 1:
+                    print("Invalid input. Must enter an alphabetic character.")
+                    continue
 
                 if len(user_guess) > 1:
                     if user_guess.lower() == random_word.lower():
@@ -41,28 +43,31 @@ class Guess:
                         turns -= 2
                 else:
                     if user_guess in random_word.lower():
-                        print(f"'{user_guess}' was found in word.")
+                        print(f"\n * '{user_guess}' was found in word. *")
                         if user_guess not in guessed_letters:
                             guessed_letters.add(user_guess)
                     else:
-                        print(f"'{user_guess}' was NOT found in word.")
+                        print(f"\n * '{user_guess}' was NOT found in word. *")
                         guessed_letters.add(user_guess)
                         turns -= 1
+                        print(f"You have {turns} turns left.")
+
                         if turns == 0:
                             print("You lost!, the word is: " + random_word)
                             print("Better luck next time!")
                             break
                         continue
 
-                guess_word = "".join([char if char.lower() in guessed_letters 
-                                      else "_ " for char in random_word])
-                print(guess_word)
                 print("\nGuessed characters:", ", ".join(guessed_letters).upper() if guessed_letters else "None")
                 print(f"You have {turns} turns left.")
 
+                guess_word = "".join([char if char.lower() in guessed_letters 
+                                      else "_ " for char in random_word])
+                print(guess_word)
+
                 if "_" not in guess_word:
                     print(f"Congratulations {player_name}, you won!")
-                    print(f"The guess word was {random_word}")
+                    print(f"The guess word was: {random_word}")
                     break
 
         elif choice == 2:
