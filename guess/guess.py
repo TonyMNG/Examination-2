@@ -13,7 +13,6 @@ class Guess:
                  'Vienna', 'Brussels', 'Amsterdam']
       
         turns = 8
-        wrong_guess = 0
         player_name = input("Enter your name: ")
         guessed_letters = set()
         random_word = random.choice(words)
@@ -21,32 +20,34 @@ class Guess:
         if choice == 1:
             # Solo
             while turns > 0:
-                user_guess = input("Guess a letter: ")
+                user_guess = input("Guess a letter: ").lower()
 
                 # guess immediatly implementation - not finished
-                if user_guess == random_word:
-                    print("Woah! You guessed correctly immediatly!")
-                    turns -= 1
-                    break
+                # if user_guess == random_word:
+                #     print("Woah! You guessed correctly immediatly!")
+                #     turns -= 1
+                #     break
 
-                if user_guess in random_word:
-                    guessed_letters.add(user_guess)
+                if user_guess in random_word.lower():
+                    print(f"{user_guess} was found in word.")
+                    if user_guess.lower() not in guessed_letters:
+                        guessed_letters.add(user_guess)
                 else:
-                    wrong_guess += 1
+                    print(f"{user_guess} was NOT found in word.")
+                    # wrong_guess += 1
+                    turns -= 1
+                    continue
 
                 for char in random_word: 
                     if char in user_guess:
                         print(char, end=" ")
-                        guessed_letters.add(char)
 
                     else:
                         print("_", end=" ")
-                        turns -= 1
-                        wrong_guess += 1
 
-                print("\nGuessed characters: ", guessed_letters)
+                print("\nGuessed characters: ", ", ".join(guessed_letters).upper())
 
-                if wrong_guess == 0:
+                if "_" not in random_word:
                     print(f"Congratulations {player_name}, you won!")
                     break
 
@@ -73,7 +74,7 @@ class Guess:
                         guessed_letters += char
                 # player 1
                 if players_turn:
-                    print(f"{player_name}s turn.")
+                    print(f"\n{player_name}s turn.")
                     user_guess = input("Guess a letter: ")
 
                     if all(char in random_word for char in user_guess):
@@ -115,7 +116,7 @@ class Guess:
             random_word = random.choice(words)
             
             while turns > 0 or computer_turns > 0:
-                print(f"{player_name} starts first.")
+                print(f"{player_name} starts.")
 
                 for char in random_word:
                     if char in guessed_letters:
@@ -123,19 +124,18 @@ class Guess:
                     else:
                         print("_", end=" ")
                         turns -= 1
-                        wrong_guess += 1
-                        guessed_letters += char
+                        guessed_letters.add(char)
 
                 # User
                 if player_turn:
-                    print(f"{player_name}s turn.")
+                    print(f"\n{player_name}s turn.")
                     user_guess = input("Guess a letter: ")
 
-                    if all(char in random_word for char in user_guess):
-                        print("Fast win!!!!")
-                        break
+                    # if all(char in random_word for char in user_guess):
+                    #     print("Fast win!!!!")
+                    #     break
 
-                    guessed_letters += user_guess
+                    guessed_letters.add(user_guess)
 
                     if user_guess in random_word:
                         print("You guessed correctly.")
@@ -147,10 +147,10 @@ class Guess:
 
                 else:
                     # Computer
-                    print("Computer's turn: ")
+                    print("\nComputer's turn: ")
                     computer_guess = random.choice(string.ascii_lowercase)
                     
-                    guessed_letters += computer_guess
+                    guessed_letters.add(computer_guess)
                     if computer_guess in guessed_letters:
                         computer_guess = random.choice(string.ascii_lowercase)
                     elif computer_guess in random_word:
