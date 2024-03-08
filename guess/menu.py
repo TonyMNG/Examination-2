@@ -60,5 +60,3 @@ class Menu:
             return False
         else:
             print("Invalid choice")
-
-        return True
