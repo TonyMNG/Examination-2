@@ -54,7 +54,7 @@ class GuessGame:
                     player_turns -= 1
                     print(f"You have {player_turns} turns left.")
 
-                    if player_turns == 0:
+                    if player_turns <= 0:
                         print("You lost!, the word is: " + random_word)
                         print("Better luck next time!")
                         break
