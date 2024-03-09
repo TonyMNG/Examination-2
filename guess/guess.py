@@ -30,7 +30,7 @@ class Guess:
                     print("You already guessed this character.")
                     continue
 
-                if not user_guess.isascii() or not user_guess.isalpha() or len(user_guess) != 1:
+                if not user_guess.isascii() or not user_guess.isalpha():
                     print("Invalid input. Must enter an alphabetic character.")
                     continue
 
