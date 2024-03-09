@@ -1,9 +1,26 @@
+"""
+Module: menu.py
+Description: This module contains the Menu class for the Guess Game application.
+"""
+
 
 class Menu:
+    """
+    A class to represent a menu in a Guess Game application.
+    """
     def __init__(self, guess_game):
+        """
+        Initializes the Menu with a GuessGame instance.
+
+        Args:
+            guess_game (GuessGame): An instance of the GuessGame class.
+        """
         self.guess_game = guess_game
 
-    def display_main_menu():
+    def display_main_menu(self):
+        """
+        Displays the main menu options.
+        """
         print("""
             ___________________________
             |        * Menu *         |
@@ -16,7 +33,10 @@ class Menu:
             ___________________________
         """)
 
-    def display_play_menu():
+    def display_play_menu(self):
+        """
+        Displays the play menu options.
+        """
         print("""
             ___________________________
             |        * Menu *         |
@@ -29,17 +49,38 @@ class Menu:
             ___________________________
         """)
 
-    def get_menu_choice():
-        return int(input("Enter Choice: "))
-    
-    def get_play_choice():
-        return int(input("Choose your option: "))
-    
-    def menu_choice(self, choice):
+    def get_menu_choice(self):
+        """
+        Gets the user's choice from the main menu.
 
+        Returns:
+            int: The user's choice.
+        """
+        return int(input("Enter Choice: "))
+
+    def get_play_choice(self):
+        """
+        Gets the user's choice from the play menu.
+
+        Returns:
+            int: The user's choice.
+        """
+        return int(input("Choose your option: "))
+
+    def menu_choice(self, choice):
+        """
+        Processes the user's menu choice.
+
+        Args:
+            choice (int): The user's choice from the menu.
+
+        Returns:
+            bool or None: True to continue, False to quit,
+            None to return to previous menu.
+        """
         if choice == 1:
-            Menu.display_play_menu()
-            play_choice = Menu.get_play_choice()
+            self.display_play_menu()
+            play_choice = self.get_play_choice()
             if play_choice == 1:
                 self.guess_game.solo_mode()
             elif play_choice == 2:
@@ -53,10 +94,11 @@ class Menu:
             else:
                 print("Invalid choice")
         elif choice == 2:
-            # Write rules here
             return choice
         elif choice == 5:
             print("Quitting game...")
             return False
         else:
             print("Invalid choice")
+
+        return True

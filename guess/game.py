@@ -6,13 +6,13 @@ from scoreboard import Scoreboard
 class GuessGame:
     def __init__(self):
         self.scoreboard = Scoreboard("scores.txt")
- 
+
     def get_random_word(self):
         words = ['London', 'Ankara', 'Abuja', 'Stockholm', 'Oslo',
                  'Copenhagen', 'Paris', 'Berlin', 'Rome', 'Madrid', 'Athens',
                  'Vienna', 'Brussels', 'Amsterdam']
         return random.choice(words)
-    
+
     # Solo
     def solo_mode(self):
         player_turns = 6
@@ -63,7 +63,7 @@ class GuessGame:
             print("\nGuessed characters:", ", ".join(guessed_letters).upper() if guessed_letters else "None")
             print(f"You have {player_turns} turns left.")
 
-            guess_word = "".join([char if char.lower() in guessed_letters 
+            guess_word = "".join([char if char.lower() in guessed_letters
                                  else "_ " for char in random_word])
             print(guess_word)
 

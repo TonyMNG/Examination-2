@@ -1,11 +1,21 @@
+"""
+Module: rules.py
+Description: Contains the Rules class for managing game rules.
+"""
+
+
 class Rules:
+
     def display_rules():
+        """
+        Displays the rules of the Guess Game.
+        """
         print("""
         Guess Game - Rules:
 
         Objective:
         The objective of the game is to guess the hidden word before running out of turns.
-              
+
         In-game:
         - (Any player) Typing 'quit' during a game will abort the game and return to main menu.
 
@@ -35,3 +45,7 @@ class Rules:
         Scoring:
         - Each win will add plus 1 point for wins to the players name on scoreboard.
         """)
+
+
+if __name__ == "__main__":
+    Rules.display_rules()
