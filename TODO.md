@@ -1,16 +1,18 @@
 #TODO
 
 ### TODO:
-- [ ] Create database of words
-- [ ] Test and debug
-  
+- [ ] different difficulity 
   
 
 ### In Progress:
-- [ ] Develop guessing function
-- [ ] Add playing against comp
-- [ ] Create menu for user interaction
-- [ ] Add playing against comp
+
 
 ### Done ✓:
 - [X] Implement logic for Char selection
+- [X] Develop guessing function
+- [X] Add playing against comp
+- [X] Create menu for user interaction
+- [X] Add playing against comp
+- [X] Create database of words
+- [X] Test and debug
+  
