@@ -3,8 +3,15 @@ from scoreboard import Scoreboard
 from rules import Rules
 from menu import Menu
 
+"""
+This module contains the main function for the application.
+"""
+
 
 def main():
+    """
+    This is the main function that runs the application.
+    """
     keep_going = True
     guess_game = GuessGame()
     menu = Menu(guess_game)
@@ -13,8 +20,9 @@ def main():
     print("\n   * Welcome to our Guess Game - Capital Cities Edition! *")
 
     while keep_going:
-        Menu.display_main_menu()
-        choice = Menu.get_menu_choice()
+
+        menu.display_main_menu()
+        choice = menu.get_menu_choice()
 
         if choice == 5:
             keep_going = menu.menu_choice(choice)
