@@ -6,9 +6,9 @@ PYTHON ?= python # python3 py
 # Print out colored action message
 MESSAGE = printf "\033[32;01m---> $(1)\033[0m\n"
 
-# To make targets in each directory under the src/
+# To make targets in each directory under the guess/
 define FOREACH
-    for DIR in src/*; do \
+    for DIR in guess/*; do \
         $(MAKE) -C $$DIR $(1); \
     done
 endef
@@ -50,10 +50,10 @@ clean:
 clean-doc:
     rm -rf doc
 
-clean-src:
+clean-guess:
     $(call FOREACH,clean)
 
-clean-all: clean clean-doc clean-src
+clean-all: clean clean-doc clean-guess
     rm -rf .venv
 
 
