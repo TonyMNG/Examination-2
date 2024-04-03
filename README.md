@@ -1,5 +1,5 @@
 # Examination-2---Grupp-15
-  @ Tony Nguyen, 
+  @ Tony Nguyen
 
 # Guess Game - Capital Cities Edition
 
@@ -14,13 +14,13 @@ Welcome to Guess Game - Capital Cities Edition! This Python console-based game a
 
 ## Installation
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Install required dependencies with `pip`.
+1. Clone the repository using: `git clone https://github.com/TonyMNG/Examination-2` in command.
+2. Navigate to the project directory by typing: `cd Examination-2`.
+3. Install required dependencies with `pip install -r requirements.txt`.
 
 ## Usage
-
-Run `main.py` to start the game.
+From Examination-2 to navigate to guess directory: `cd guess` .
+Run `python main.py` to start the game.
 
 ## Contributing
 
