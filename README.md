@@ -19,8 +19,8 @@ Welcome to Guess Game - Capital Cities Edition! This Python console-based game a
 3. Install required dependencies with `pip install -r requirements.txt`.
 
 ## Usage
-From Examination-2 to navigate to guess directory: `cd guess` .
-Run `python main.py` to start the game.
+- From Examination-2 to navigate to guess directory: `cd guess`.
+- Run `python main.py` to start the game.
 
 ## Contributing
 
